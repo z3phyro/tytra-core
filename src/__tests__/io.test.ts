@@ -8,8 +8,8 @@ import {
     writeFileSync,
 } from "node:fs";
 import * as config from "../config";
-import { TEST_FOLDER } from "../const";
 
+const TEST_FOLDER = "src/__tests__/sandbox_io/";
 const TEST_DATA = `{"hi": "Hello World!"}`;
 const TEST_TYPED_DATA = `export const Maykel: TranslationInterface = {hi: "Hello World!"};`;
 const TEST_TYPED_DATA_SINGLE_QUOTES = `export const Maykel: TranslationInterface = {hi: 'Hello World!'};`;
@@ -28,11 +28,7 @@ describe("Checking IO functions", () => {
         } catch (e) {}
     });
 
-    afterAll(() => {
-        try {
-            rmdirSync(TEST_FOLDER);
-        } catch (e) {}
-    });
+    afterAll(() => {});
 
     test("Writes the file into the system", () => {
         writeFile(TEST_FILE, TEST_DATA);

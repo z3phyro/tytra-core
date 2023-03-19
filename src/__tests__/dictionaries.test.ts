@@ -1,18 +1,30 @@
-import { mkdirSync, writeFileSync, rmdirSync, readFileSync } from "fs";
 import {
+    mkdirSync,
+    writeFileSync,
+    rmdirSync,
+    readFileSync,
+    existsSync,
+} from "fs";
+import {
+    addDictionary,
     getDictionaries,
     initDictionaries,
+    initNewTranslation,
+    removeDictionary,
+    removeTranslationFile,
     writeDictionaries,
 } from "../dictionaries";
-import { readFile, removeFile, writeFile } from "../io";
-import { TEST_FOLDER } from "../const";
+import { readFile, readTypedFile, removeFile, writeFile } from "../io";
 import * as config from "../config";
+import { writeTranslation } from "../translations";
 
 const DICTIONARIES_FILE = "dictionaries.json";
 const DICTIONARIES_DATA = `{
   "en": "English",
   "es": "Spanish"
 }`;
+
+const TEST_FOLDER = "src/__tests__/sandbox_dict/";
 
 describe("Testing dictionaries", () => {
     beforeAll(() => {
@@ -29,9 +41,6 @@ describe("Testing dictionaries", () => {
     afterAll(() => {
         removeFile("dictionaries.json");
         removeFile("translation.ts");
-        try {
-            rmdirSync(TEST_FOLDER + DICTIONARIES_FILE);
-        } catch (e) {}
     });
 
     test("Get dictionaries", () => {
@@ -85,6 +94,42 @@ export default {
     });
 
     test("Initializes new translations", () => {
-        // initNewTranslation;
+        const json = {
+            general: {
+                hi: "Hello World!",
+            },
+        };
+        writeTranslation(json, "English");
+        initNewTranslation("Klingon");
+
+        const klingonFile = readTypedFile("klingon.translation.ts");
+
+        expect(klingonFile).toEqual({ general: { hi: "-" } });
     });
+
+    test("Removes translation files", () => {
+        removeTranslationFile("klingon");
+
+        expect(existsSync(TEST_FOLDER + "klingon.translation.ts")).toBeFalsy();
+    });
+
+    test("Removes dictionary", () => {
+        writeTranslation({ general: "General" }, "english");
+        removeDictionary("en");
+
+        const dicts = readFileSync(
+            TEST_FOLDER + "dictionaries.json"
+        ).toString();
+
+        expect(JSON.parse(dicts)).toEqual({ es: "Spanish" });
+    });
+
+    // test("Adds dictionary", () => {
+    //     initDictionaries();
+    //     addDictionary("kl", "Klingon");
+
+    //     const klingonFile = readTypedFile("klingon.translation.ts");
+    //     console.log(klingonFile);
+    //     expect(klingonFile).toEqual({ general: { hi: "-" } });
+    // });
 });
