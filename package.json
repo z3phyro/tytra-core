@@ -1,10 +1,13 @@
 {
-    "name": "@tytra/core",
-    "version": "0.1.0",
+    "name": "@z3phyro/tytra-core",
+    "version": "0.1.8",
     "description": "Core project of CLI inspired by prisma, to create and mantain statically typed translations on any typescript project.",
-    "main": "index.js",
+    "files": [
+        "dist"
+    ],
+    "main": "dist/index.js",
     "scripts": {
-        "build": "npx tsc",
+        "build": "rm -rf dist && npx tsc",
         "postbuild": "echo '#!/usr/bin/env node' | cat - dist/index.js > temp && mv temp dist/index.js",
         "test": "jest"
     },
@@ -20,7 +23,7 @@
         "vue",
         "solidjs"
     ],
-    "author": "",
+    "author": "@z3phyro Maykel López Meneses",
     "license": "ISC",
     "devDependencies": {
         "@jest/globals": "^29.5.0",

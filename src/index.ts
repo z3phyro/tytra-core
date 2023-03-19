@@ -9,6 +9,7 @@ import {
     writeInterface,
     writeTranslation,
     translationCoverage,
+    getAllCoverage,
 } from "./translations";
 
 import {
@@ -32,7 +33,7 @@ import {
 
 import { readFile, readTypedFile, removeFile, writeFile } from "./io";
 
-export {
+export default {
     addTranslation,
     getCoverage,
     initTranslations,
@@ -60,4 +61,5 @@ export {
     removeDictionary,
     removeTranslationFile,
     writeDictionaries,
+    getAllCoverage,
 };

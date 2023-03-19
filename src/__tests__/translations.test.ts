@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync } from "fs";
 import * as config from "../config";
 import {
     addTranslation,
+    getAllCoverage,
     getCoverage,
     initTranslations,
     readTranslation,
@@ -169,5 +170,23 @@ describe("Test translation functions", () => {
 
         expect(result.percent).toBe("50%");
         expect(result.paths).toEqual(["general.no"]);
+    });
+
+    test("Get all coverage", () => {
+        writeTranslation({ general: { yes: "yes", no: "-" } }, "spanish");
+        writeTranslation({ general: { yes: "yes", no: "no" } }, "english");
+
+        const result = getAllCoverage();
+
+        expect(result).toEqual({
+            en: {
+                paths: [],
+                percent: "100%",
+            },
+            es: {
+                paths: ["general.no"],
+                percent: "50%",
+            },
+        });
     });
 });

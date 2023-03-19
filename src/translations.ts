@@ -204,6 +204,21 @@ export const getCoverage = (dict: any, verbose = false) => {
     return result;
 };
 
+export const getAllCoverage = () => {
+    const dicts = getDictionaries();
+    const result: any = {};
+
+    for (let dict in dicts) {
+        const json = readTypedFile(
+            `${dicts[dict].toLowerCase()}.translation.ts`
+        );
+        console.log(json);
+        result[dict] = getCoverage(json);
+    }
+
+    return result;
+};
+
 export const translationCoverage = (language: string | undefined) => {
     const dicts = getDictionaries();
     if (!language) {
