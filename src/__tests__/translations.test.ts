@@ -9,6 +9,7 @@ import {
     removeTranslation,
     surfTranslations,
     translationImport,
+    updateTranslation,
     writeInterface,
     writeTranslation,
 } from "../translations";
@@ -35,6 +36,7 @@ describe("Test translation functions", () => {
             removeFile("translation.interface.ts");
             removeFile("translation.ts");
             removeFile("dictionaries.json");
+            removeFile("english.translation.json");
         } catch (e) {}
     });
 
@@ -188,5 +190,15 @@ describe("Test translation functions", () => {
                 percent: "50%",
             },
         });
+    });
+
+    test("Update translation", () => {
+        writeTranslation({ general: { yes: "yes", no: "no" } }, "english");
+
+        updateTranslation("english", "general.yes", "Sure Thing!");
+
+        const result: any = readTranslation("english") ?? {};
+
+        expect(result["general"]["yes"]).toBe("Sure Thing!");
     });
 });

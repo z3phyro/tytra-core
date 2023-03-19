@@ -212,7 +212,6 @@ export const getAllCoverage = () => {
         const json = readTypedFile(
             `${dicts[dict].toLowerCase()}.translation.ts`
         );
-        console.log(json);
         result[dict] = getCoverage(json);
     }
 
@@ -246,4 +245,16 @@ export const translationCoverage = (language: string | undefined) => {
             )}%`
         );
     }
+};
+
+export const updateTranslation = (
+    dictName: string,
+    path: string,
+    newValue: string
+) => {
+    const json = readTranslation(dictName);
+
+    pathAssign(json, path, newValue);
+
+    writeTranslation(json, dictName);
 };
