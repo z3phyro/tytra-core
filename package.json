@@ -1,14 +1,17 @@
 {
     "name": "@z3phyro/tytra-core",
-    "version": "0.1.8",
+    "version": "0.1.20",
     "description": "Core project of CLI inspired by prisma, to create and mantain statically typed translations on any typescript project.",
     "files": [
-        "dist"
+        "lib"
     ],
-    "main": "dist/index.js",
+    "main": "./lib/index.js",
+    "module": "./lib/index.js",
+    "types": "./lib/index.d.ts",
     "scripts": {
-        "build": "rm -rf dist && npx tsc",
-        "postbuild": "echo '#!/usr/bin/env node' | cat - dist/index.js > temp && mv temp dist/index.js",
+        "prepublish": "npm run build",
+        "build": "rm -rf lib && npx tsc -p tsconfig.json",
+        "postbuild": "echo '#!/usr/bin/env node' | cat - lib/index.js > temp && mv temp lib/index.js",
         "test": "jest"
     },
     "keywords": [
