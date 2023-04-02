@@ -1,6 +1,6 @@
 {
     "name": "@z3phyro/tytra-core",
-    "version": "0.1.20",
+    "version": "0.1.21",
     "description": "Core project of CLI inspired by prisma, to create and mantain statically typed translations on any typescript project.",
     "files": [
         "lib"
@@ -13,6 +13,10 @@
         "build": "rm -rf lib && npx tsc -p tsconfig.json",
         "postbuild": "echo '#!/usr/bin/env node' | cat - lib/index.js > temp && mv temp lib/index.js",
         "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/z3phyro/tytra-core.git"
     },
     "keywords": [
         "translation",

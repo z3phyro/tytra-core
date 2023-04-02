@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist",
-    "strict": true,
-    "target": "es6",
-    "module": "commonjs",
-    "sourceMap": true,
-    "esModuleInterop": true,
+    "outDir": "./lib",
+    "target": "ES5",
+    "module": "CommonJS",
     "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
     "declaration": true,
   },
 
-  "exclude": ["node_modules", "translations"]
+  "exclude": ["node_modules", "translations", "src/__tests__"]
 }
