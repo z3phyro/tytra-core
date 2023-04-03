@@ -1,1 +1,1 @@
-export const getFolder = () => "translations/";
+export const getFolder = () => "src/translations/";
