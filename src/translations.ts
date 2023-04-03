@@ -9,7 +9,7 @@ import { generateInterface, pathAssign, pathGet, pathRemove } from "./utils";
 import { getFolder } from "./config";
 
 export const writeTranslation = (json: object, dictName = "English") => {
-    let result = `import { TranslationInterface } from "./translation.interface"; 
+    let result = `import type { TranslationInterface } from "./translation.interface"; 
 
 export const ${dictName}Translation: TranslationInterface = ${JSON.stringify(
         json,
