@@ -1,6 +1,6 @@
 {
     "name": "@z3phyro/tytra-core",
-    "version": "0.1.21",
+    "version": "0.1.22",
     "description": "Core project of CLI inspired by prisma, to create and mantain statically typed translations on any typescript project.",
     "files": [
         "lib"

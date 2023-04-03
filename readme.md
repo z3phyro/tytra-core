@@ -31,10 +31,9 @@ Both the CLI and the UI provide some useful features for both the developer and 
 - Add remove and edit translations on one or multiple languages using a [CLI](https://github.com/z3phyro/tytra-cli) or a [UI](https://github.com/z3phyro/tytra-ui)
 - Typescript interfaces for translations
 
-# Roadmap
+# Next steps to work on:
 
-Next steps to work on:
-
+- [ ] Add configuration file
 - [ ] Add validations
 - [ ] Add sanitation to the user inputs
 - [ ] Improve the UI Experience
